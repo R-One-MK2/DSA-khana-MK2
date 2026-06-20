@@ -138,5 +138,160 @@ if __name__ == "__main__":
 5. [[O(n) Linear]]
 6. [[O(n2) Quadratic]]
 
-#### References
+
+# Leetcode 242 Valid Anagram
+#### The Problem
+```
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+Example 1:
+Input: s = "anagram", t = "nagaram"
+
+Output: true
+Example 2:
+
+Input: s = "rat", t = "car"
+Output: false
+
+Constraints:
+1 <= s.length, t.length <= 5 * 104
+s and t consist of lowercase English letters.
+
+Follow up: What if the inputs contain Unicode characters? How would you adapt your solution to such a case?
+```
+#### Solution
+- 
+##### Pseudocode
+###### Brute Force
+```python 
+# BRUTE FORCE
+# create a dictionary of alphabets
+# take two for loops, one inner and one outer
+# register the letter (only letters, else reject), add dictionary and count it
+# as a follow up, do the same thing for the target, if fail, exit
+```
+
+Time : 
+$$O(N^2)$$
+Space :
+$$O(1)$$
+###### Optimized Short Circuit 
+```python 
+
+class Solution:
+    # BRUTE FORCE
+    # create a dictionary of alphabets
+    # take two for loops, one inner and one outer
+    # register the letter (only letters, else reject), add dictionary and count it
+    # as a follow up, do the same thing for the target, if fail, exit
+
+    # OPTIMAL 1 TWO HASHMAP
+    # create hashmap for source
+    # create hashmap for target
+    # compare
+
+    # error out on length difference
+
+
+
+    # OPTIMAL 2 SINGLE HASHMAP
+    # create hashmap for source
+    # Do increment decrement  on the same hashmap for target
+
+    # False on length mismatch
+
+    # OPTIMAL 3
+    # use python counter function
+    # Compare the counters of source and target
+
+```
+
+Time : 
+$$O(N)$$
+Space : 
+$$O(1)$$
+##### Solution 
+```python 
+
+class Solution:
+    # BRUTE FORCE
+    # create a dictionary of alphabets
+    # take two for loops, one inner and one outer
+    # register the letter (only letters, else reject), add dictionary and count it
+    # as a follow up, do the same thing for the target, if fail, exit
+
+    def isAnagram_optimal_1(self, s: str, t: str) -> bool:
+        # OPTIMAL 1 TWO HASHMAP
+        # create hashmap for source
+        # create hashmap for target
+        # compare
+
+        # error out on length difference
+        if len(s) != len(t):
+            return False
+
+        s_map = {}
+        t_map = {}
+
+        for char in s:
+            s_map[char] = s_map.get(char, 0) + 1
+        for char in t:
+            t_map[char] = t_map.get(char, 0) + 1
+
+        return s_map == t_map
+
+    def isAnagram_optimal_2(self, s: str, t: str) -> bool:
+        # OPTIMAL 2 SINGLE HASHMAP
+        # create hashmap for source
+        # Do increment decrement  on the same hashmap for target
+
+        # False on length mismatch
+        if len(s) != len(t):
+            return False
+
+        # Create hashmap for the source
+        map_count = {}
+
+        # Add source string if found
+        for char in s:
+            map_count[char] = map_count.get(char, 0) + 1
+
+        # Remove count if found
+        for char in t:
+            # If not found, NOT anagram
+            if char not in map_count or map_count[char] == 0:
+                return False
+
+            # If found, reduce the COUNT
+            map_count[char] -= 1
+
+        return True
+
+    def isAnagram_optimal_3(self, s: str, t: str) -> bool:
+        # OPTIMAL 3
+        # use python counter function
+        # Compare the counters of source and target
+        return Counter(s) == Counter(t)
+
+```
+#### The Pattern
+- **Frequency Counter / Hash Mapping**: Using a hashable structure to collect and compare element distributions.
+- **Early Exit / Short-Circuiting**: Filtering out bad data instantly (via length checks or missing keys) to prevent redundant computing. 
+#### The Architect's Why
+- **Decoupling Loops**: Converting nested loops (O(N²)) into sequential loops (O(N)) dramatically speeds up throughput for large data payloads.
+- **In-Memory Bounding**: Restricting the tracking state to the unique character set (K=26) protects systems against memory exhaustion vulnerabilities.
+#### Real World System Mapping
+- [[Order-Independent Verification]]: Validating that an incoming stream of data packets or warehouse inventory items exactly matches a target invoice, regardless of the sequence in which they arrive.
+#### Time Complexity
+>`How many operations does this perform as the input grows?`
+- [[Big O Linear|Linear Complexity]]
+#### Space Complexity
+>`How much additional memory does this algorithm require to complete its task?`
+- [[Big O Constant|Constant Complexity]]
+
+#### Related Patterns 
 1. 
+#### Related
+1. [[anagram]]
+#### References
+1. [2287. Rearrange Characters to Make Target String - In-Depth Explanation](https://algo.monster/liteproblems/2287)
