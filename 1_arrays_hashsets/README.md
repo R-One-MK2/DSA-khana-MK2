@@ -1,4 +1,4 @@
-# Leetcode 217 Contains Duplicate
+# Leetcode 217 Contains Duplicate 20260618
 > [!summary] Summary
 > Summary of the File 
 > 
@@ -139,7 +139,7 @@ if __name__ == "__main__":
 6. [[O(n2) Quadratic]]
 
 
-# Leetcode 242 Valid Anagram
+# Leetcode 242 Valid Anagram 20260620
 #### The Problem
 ```
 Given two strings s and t, return true if t is an anagram of s, and false otherwise.
@@ -295,3 +295,105 @@ class Solution:
 1. [[anagram]]
 #### References
 1. [2287. Rearrange Characters to Make Target String - In-Depth Explanation](https://algo.monster/liteproblems/2287)
+
+# Leetcode 001 Two Sum 20260622
+
+| Concept | Note |
+| ------- | ---- |
+|         |      |
+
+#### The Problem
+```
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+Example 1:
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
+Example 2:
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+
+Example 3:
+Input: nums = [3,3], target = 6
+Output: [0,1]
+```
+#### Solution
+```python
+
+```
+##### Pseudocode
+###### Brute Force
+```python 
+
+```
+
+Time : 
+Space : 
+###### Optimised Short Circuit 
+```python 
+# Iterate through an array
+# Create a dictionary called seen
+# Make a compliment and see if it is in seen, else add in dictionary
+# Continue 
+```
+
+Time : [[Big O Linear|Linear Complexity]]
+Space : [[Big O Linear|Linear Complexity]]
+##### Solution 
+```python 
+
+import unittest
+from typing import List
+
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+
+        seen = {}
+
+        # Iterate over the row
+        for i, item in enumerate(nums):
+            complement = target - item
+
+            if complement in seen:
+                return [seen[complement], i]
+
+            seen[item] = i
+        # complement = target - element
+        # check if complement == next item else add to seen
+
+        # Time Complexity : O(N)
+        # Space Complexity : O(N)
+```
+#### The Pattern
+- [[Hashing]] /[[Hash Map]] / [[Associative Array]]
+#### The Architect's Why
+- We use the Hash Map as "memory." By storing `value: index` as we traverse the array, we can check for the required complement in $O(1)$ time, transforming an expensive exhaustive search into a single linear pass
+#### Real World System Mapping
+- 
+#### Time Complexity
+>`How many operations does this perform as the input grows?`
+
+We perform a single pass through the array. For each element, dictionary lookups and insertions are $O(1)$ on average. Total operations scale linearly with input $n$.
+#### Space Complexity
+>`How much additional memory does this algorithm require to complete its task?`
+
+In the worst case (the solution is the last pair, or doesn't exist), we store $n$ elements in the hash map.
+#### The Gap Bounty
+
+#### Related Patterns 
+1. [[Two Pointers]]
+2. [[Hash Set]]
+#### Related
+1. [[Hash Set]]
+2. [[Hash Map]]
+3. [[Two Pointers]]
+#### References
+1. Introduction to Algorithms (CLRS): Chapter on Hash Tables.
+2. Grokking Algorithms: Chapter on Hash Tables.
